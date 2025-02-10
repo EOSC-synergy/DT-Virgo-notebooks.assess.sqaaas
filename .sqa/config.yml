@@ -1,0 +1,72 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/interTwin-eu/DT-Virgo-notebooks:
+      branch: main
+      repo: https://github.com/interTwin-eu/DT-Virgo-notebooks
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/interTwin-eu/DT-Virgo-notebooks git:
+        commands:
+        - /usr/bin/env sh .sqa/script.slimy-ecru-manatee.sh
+        container: qc.acc_stealthy-pumpkin-fossa
+  QC.Doc:
+    repos:
+      github.com/interTwin-eu/DT-Virgo-notebooks find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.lumpy-ruby-mongoose.sh
+        container: qc.doc_wimpy-plum-burmese
+      github.com/interTwin-eu/DT-Virgo-notebooks git:
+        commands:
+        - /usr/bin/env sh .sqa/script.geeky-olive-jackal.sh
+        container: qc.doc_scanty-brass-hound
+      github.com/interTwin-eu/DT-Virgo-notebooks markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.slimy-puce-mist.sh
+        container: qc.doc_shabby-harlequin-shrew
+  QC.Lic:
+    repos:
+      github.com/interTwin-eu/DT-Virgo-notebooks licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.crappy-jade-alligator.sh
+        container: qc.lic_squirrely-periwinkle-capuchin
+  QC.Sec:
+    repos:
+      github.com/interTwin-eu/DT-Virgo-notebooks bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-peach-anteater.sh
+        container: qc.sec_clammy-ultramarine-russel
+  QC.Sty:
+    repos:
+      github.com/interTwin-eu/DT-Virgo-notebooks flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.wiggy-chocolate-hummingbird.sh
+        container: qc.sty_messy-firebrick-ray
+      github.com/interTwin-eu/DT-Virgo-notebooks hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-goldenrod-giraffe.sh
+        container: qc.sty_beady-ivory-tortoise
+      github.com/interTwin-eu/DT-Virgo-notebooks jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.snoopy-goldenrod-tamarin.sh
+        container: qc.sty_pretty-red-snake
+  QC.Uni:
+    repos:
+      github.com/interTwin-eu/DT-Virgo-notebooks pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.randy-peach-loon.sh
+        container: qc.uni_skanky-pink-emu
+  QC.Ver:
+    repos:
+      github.com/interTwin-eu/DT-Virgo-notebooks get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.flabby-russet-insect.sh
+        container: qc.ver_gloppy-xanthic-ostrich
+timeout: 5400
